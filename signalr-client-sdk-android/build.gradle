@@ -1,8 +1,12 @@
 apply plugin: 'com.android.library'
 
+repositories {
+    maven { url 'https://clojars.org/repo' }
+}
+
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 8
