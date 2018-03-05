@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import microsoft.aspnet.signalr.client.Action;
+import microsoft.aspnet.signalr.client.ConnectionBase;
 import microsoft.aspnet.signalr.client.ErrorCallback;
 import microsoft.aspnet.signalr.client.LogLevel;
-import microsoft.aspnet.signalr.client.SignalRFuture;
-import microsoft.aspnet.signalr.client.ConnectionBase;
 import microsoft.aspnet.signalr.client.Logger;
 import microsoft.aspnet.signalr.client.NullLogger;
+import microsoft.aspnet.signalr.client.SignalRFuture;
 import microsoft.aspnet.signalr.client.http.HttpConnection;
 
 /**
@@ -58,10 +58,9 @@ public class AutomaticTransport extends HttpClientTransport {
     }
 
     private void initialize(Logger logger) {
-        mTransports = new ArrayList<ClientTransport>();
+        mTransports = new ArrayList<>();
         mTransports.add(new WebsocketTransport(logger));
         mTransports.add(new ServerSentEventsTransport(logger));
-        mTransports.add(new LongPollingTransport(logger));
     }
 
     @Override
