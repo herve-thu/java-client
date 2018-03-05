@@ -6,11 +6,6 @@ See License.txt in the project root for license information.
 
 package microsoft.aspnet.signalr.client.transport;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLEncoder;
-
 import com.google.gson.Gson;
 
 import org.java_websocket.client.WebSocketClient;
@@ -18,6 +13,11 @@ import org.java_websocket.exceptions.InvalidDataException;
 import org.java_websocket.framing.Framedata;
 import org.java_websocket.handshake.ServerHandshake;
 import org.java_websocket.util.Charsetfunctions;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 
 import microsoft.aspnet.signalr.client.ConnectionBase;
 import microsoft.aspnet.signalr.client.LogLevel;
@@ -82,6 +82,9 @@ public class WebsocketTransport extends HttpClientTransport {
 
         URI uri;
         try {
+            // Eventually update the protocol
+            url = url.replace("http://", "ws://").replace("https://", "wss://");
+
             uri = new URI(url);
         } catch (URISyntaxException e) {
             e.printStackTrace();
