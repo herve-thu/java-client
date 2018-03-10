@@ -83,7 +83,7 @@ public class WebsocketTransport extends HttpClientTransport {
         URI uri;
         try {
             // Eventually update the protocol
-            url = url.replace("http://", "ws://").replace("https://", "wss://");
+            url = url.replace("http://", "ws://").replace("https://", "ws://");
 
             uri = new URI(url);
         } catch (URISyntaxException e) {
@@ -111,6 +111,7 @@ public class WebsocketTransport extends HttpClientTransport {
             @Override
             public void onError(Exception e) {
                 mWebSocketClient.close();
+                mConnectionFuture.triggerError(e);
             }
 
             @Override
